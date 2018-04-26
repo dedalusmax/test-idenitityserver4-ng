@@ -1,0 +1,304 @@
+{
+  "rulesDirectory": [
+    "node_modules/codelyzer"
+  ],
+  "rules": {
+    "adjacent-overload-signatures": true, // Enforces function overloads to be consecutive; grouping naturally related items together
+    "align": [ // Enforces vertical alignment
+      false,
+      "parameters", //checks alignment of function parameters
+      "arguments", // checks alignment of function call arguments
+      "statements" // checks alignment of statements
+    ],
+    "array-type": [ // Requires using either ‘T[]’ or ‘Array' for arrays --> Amount: 8
+      true,
+      "generic"
+    ],
+    "arrow-parens": false, // Requires parentheses around the parameters of arrow function definitions
+    "arrow-return-shorthand": true, // Suggests to convert `() => { return x; }` to `() => x`
+    "await-promise": false, // Warns for an awaited value that is not a Promise
+    "ban": [ // Bans the use of specific functions or global methods
+      true,
+      [
+        "someGlobalMethod"
+      ],
+      [
+        "someObject",
+        "someFunction"
+      ],
+      [
+        "someObject",
+        "otherFunction",
+        "Optional explanation"
+      ]
+    ],
+    "ban-types": [ // Bans specific types from being used, --> Amount: 10
+      true,
+      [
+        "String",
+        "Use 'string' instead."
+      ],
+      [
+        "Object",
+        "Use {} instead."
+      ]
+    ],
+    "callable-types": true, // An interface or literal type with just a call signature can be written as a function type
+    "class-name": true, // Enforces PascalCased class and interface names
+    "comment-format": [ // Enforces formatting rules for single-line comments
+      true,
+      "check-space"
+    ],
+    "completed-docs": [ // Enforces documentation for important items be filled out
+      false,
+      "functions",
+      "methods"
+    ],
+    "curly": true, // Enforces braces for `if`/`for`/`do`/`while` statements
+    "cyclomatic-complexity": [ // code metric which indicates the level of complexity in a function
+      true,
+      50
+    ],
+    "deprecation": { // Warns when deprecated APIs are used
+      "severity": "warn"
+    },
+    "eofline": true, // Ensures the file ends with a newline
+    "file-header": [ // Enforces a certain header comment for all files, matched by a regular expression
+      false,
+      "Copyright \\d{4}"
+    ],
+    "forin": true, // Requires a `for ... in` statement to be filtered with an `if` statement
+    "import-blacklist": [ // Disallows importing the specified modules directly via `import` and `require`. Instead only sub modules may be imported from that module
+      true,
+      "rxjs",
+      "rxjs/Rx",
+      "lodash"
+    ],
+    "import-spacing": true, // Ensures proper spacing between import statement keywords
+    "indent": [ // Enforces indentation with tabs or spaces
+      true,
+      "spaces"
+    ],
+    "interface-name": [ // Requires interface names to begin with a capital ‘I’
+      true,
+      "never-prefix" // or to use "always-prefix"
+    ],
+    "interface-over-type-literal": true, // Prefer an interface declaration over a type literal (`type T = { ... }`)
+    "jsdoc-format": false, // Enforces basic format rules for JSDoc comments (comments starting with /** and end with */)
+    "label-position": true, // Only allows labels in sensible locations
+    "match-default-export-name": true, // Requires that a default import have the same name as the declaration it imports
+    "max-classes-per-file": [
+      false,
+      1 // file may not contain more than the specified number of classes
+    ],
+    "max-file-line-count": [
+      true,
+      500
+    ], // Requires files to remain under a certain number of lines
+    "max-line-length": [ // Requires lines to be under a certain max length
+      true,
+      140
+    ],
+    "member-access": [ // explicit visibility declarations for class members
+      false,
+      "check-accessor", // enforces explicit visibility on get/set accessors (can only be public)
+      "check-constructor" // enforces explicit visibility on constructors (can only be public)
+    ],
+    "member-ordering": [ // Enforces member ordering --> Amount: 2
+      true,
+      {
+        "order": [
+          "static-field",
+          "instance-field",
+          "constructor",
+          "static-method",
+          "instance-method"
+        ]
+      }
+    ],
+    "no-arg": true, // Disallows use of `arguments.callee`
+    "no-bitwise": true, // Disallows bitwise operators
+    "no-console": [ // Bans the use of specified `console` methods
+      true,
+      "debug",
+      "info",
+      "time",
+      "timeEnd",
+      "trace"
+    ],
+    "newline-before-return": false, // Enforces blank line before return when not the only line in the block
+    "new-parens": true, // Requires parentheses when invoking a constructor via the new keyword; new ()
+    "no-any": false, // Disallows usages of any as a type declaration
+    "no-boolean-literal-compare": true, // Warns on comparison to a boolean literal, as in x === true --> Amount: 7
+    "no-conditional-assignment": true, //Disallows any type of assignment in conditionals, This applies to do-while, for, if, and while statements
+    "no-consecutive-blank-lines": [ // Disallows 2 or more blank lines in a row
+      true,
+      2
+    ],
+    "no-construct": true, // Disallows access to the constructors of `String`, `Number`, and `Boolean`
+    "no-debugger": true, // Disallows `debugger` statements
+    "no-default-export": true, // Disallows default exports in ES6-style modules, use named exports instead
+    "no-duplicate-super": true, // Warns if 'super()' appears twice in a constructor
+    "no-duplicate-variable": true, // Disallows duplicate variable declarations in the same block scope
+    "no-empty": true, // Disallows empty blocks --> Amount: 4
+    "no-empty-interface": true, // Forbids empty interfaces
+    "no-eval": true, // Disallows `eval` function invocations
+    "no-floating-promises": true, // Promises returned by functions must be handled appropriately
+    "no-for-in-array": true, // Disallows iterating over an array with a for-in loop
+    "no-import-side-effect": [ // Avoid import statements with side-effect
+      true,
+      {
+        "ignore-module": "(\\.html|\\.scss)$"
+      }
+    ],
+    "no-inferrable-types": [ // Disallows explicit type declarations for variables or parameters initialized to a number, string, or boolean
+      true,
+      "ignore-params"
+    ],
+    "no-inferred-empty-object-type": true, // Disallow type inference of {} (empty object type) at function and constructor call sites
+    "no-internal-module": true, // Disallows internal module; Use the newer namespace keyword instead,confusion of concepts with external modules
+    "no-invalid-this": true, // Disallows using the this keyword outside of classes
+    "no-magic-numbers": true, // Disallows the use constant number values outside of variable assignments, magic number is a direct usage of a number in the code --> Amount:22
+    "no-mergeable-namespace": true, // Disallows mergeable namespaces in the same file
+    "no-misused-new": true, // Warns on apparent attempts to define constructors for interfaces or `new` for classes
+    "no-namespace": [ // Disallows use of internal modules and namespaces, This rule still allows the use of declare module ... {}
+      true,
+      "allow-declarations" // allow-declarations allows declare namespace ... {} to describe external APIs
+    ],
+    "no-non-null-assertion": true, // Disallows non-null assertions
+    "no-reference": true, // Disallows /// <reference path=> imports (use ES6-style imports instead)
+    "no-require-imports": true, // Disallows invocation of require(), 
+    "no-shadowed-variable": true, // Disallows shadowing variable declarations
+    "no-string-literal": false, // Forbids unnecessary string literal property access. Allows `obj["prop-erty"]` (can't be a regular property access).
+    //Disallows `obj["property"]` (should be `obj.property`)
+    "no-string-throw": true, // Flags throwing plain strings or concatenations of strings because only Errors produce proper stack traces
+    "no-switch-case-fall-through": true, // Disallows falling through case statements
+    "no-trailing-whitespace": true, // Disallows trailing whitespace at the end of a line
+    "no-unbound-method": true, // Warns when a method is used as outside of a method call --> Amount: 8
+    "no-unnecessary-initializer": true, // Forbids a 'var'/'let' statement or destructuring initializer to be initialized to 'undefined'
+    "no-unnecessary-qualifier": true, // Warns when a namespace qualifier (A.x) is unnecessary
+    "no-unsafe-any": false, // Warns when using an expression of type ‘any’ in an unsafe way, type casts and tests are allowed --> Amount: 449
+    "no-unsafe-finally": true, // Disallows control flow statements, such as return, continue, break and throws in finally blocks
+    "no-unused-expression": true, // Disallows unused expression statements
+    "no-unused-variable": true, // Disallows unused imports, variables, functions and private class members --> Amount: 28
+    "no-use-before-declare": true, // Disallows usage of variables before their declaration
+    "no-var-keyword": true, // Disallows usage of the `var` keyword
+    "no-var-requires": true, // use of forms such as var module = require("module") are banned, use ES6 style imports or import foo = require('foo') imports
+    "object-literal-key-quotes": [ // Enforces consistent object literal property quote style
+      false,
+      "as-needed" // or always, consistent
+    ],
+    "object-literal-shorthand": true, // Enforces use of ES6 object literal shorthand when possible --> Amount: 5
+    "object-literal-sort-keys": false, // Checks ordering of keys in object literals
+    "one-line": [ // Requires the specified tokens to be on the same line as the expression preceding them
+      true,
+      "check-open-brace",
+      "check-catch",
+      "check-finally",
+      "check-else",
+      "check-whitespace"
+    ],
+    "one-variable-per-declaration": [ // Disallows multiple variable definitions in the same declaration statement
+      true,
+      "ignore-for-loop"
+    ],
+    "only-arrow-functions": [ // Disallows traditional (non-arrow) function expressions
+      true, //use const squares = arr.map(x => x * x); don't use: const squares = arr.map(function (x) { return x * x })
+      "allow-declarations",
+      "allow-named-functions" // allows the expression function foo() {} but not function() {}
+    ],
+    "prefer-const": true, // Requires that variable declarations use `const` instead of `let` and `var` if possible
+    "prefer-method-signature": true, // Prefer foo(): void over foo: () => void in interfaces and typesm,
+    "quotemark": [ // Requires single or double quotes for string literals
+      true,
+      "single"
+    ],
+    "radix": true, // Requires the radix parameter to be specified when calling `parseInt`
+    "semicolon": [ // Enforces consistent semicolon usage at the end of every statement
+      true,
+      "always"
+    ],
+    "space-before-function-paren": [ // Require or disallow a space before function parenthesis, 
+      false,
+      "always" // or never
+    ],
+    "strict-boolean-expressions": [ // Restricts the types allowed in boolean expressions. By default only booleans are allowed, 
+      true,
+      "allow-null-union", // allows union types containing null
+      "allow-undefined-union", // allows union types containing undefined
+      "allow-string",
+      "allow-number"
+    ],
+    "strict-type-predicates": true, // Warns for type predicates that are always true or always false
+    "switch-default": true, // Require a default case in all switch statements
+    "trailing-comma": [ // Requires or disallows trailing commas in array and object literals, amount: 210 ->agreed to false
+      false,
+      {
+        "multiline": "always",
+        "singleline": "never"
+      }
+    ],
+    "typedef": [ // Requires type definitions to exist                 
+      false,
+      "call-signature", // checks return type of functions
+      "parameter", // checks type specifier of function parameters for non-arrow functions
+      "property-declaration", // checks return types of interface properties
+      "variable-declaration", // checks non-binding variable declarations
+      "member-variable-declaration" // checks member variable declarations
+    ],
+    "triple-equals": [ // Requires `===` and `!==` in place of `==` and `!=`
+      true,
+      "allow-null-check"
+    ],
+    "typedef-whitespace": [ // Requires or disallows whitespace for type definitions
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      }
+    ],
+    "unified-signatures": true, // Warns for any two overloads that could be unified into one by using a union or an optional/rest parameter
+    "use-isnan": true, // instead of if (myVar === NaN), do if (isNaN(myVar))
+    "variable-name": [ // Checks variable names for various errors --> Amount: 2
+      true,
+      "ban-keywords", // disallows the use of certain TypeScript keywords (any, Number, number, String, string, Boolean, boolean, undefined)
+      "check-format", // allows only camelCased or UPPER_CASED variable names
+      "allow-leading-underscore", // allows underscores at the beginning
+      "allow-trailing-underscore" // allows underscores at the end
+  ],
+    "whitespace": [ // Enforces whitespace style conventions
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-separator",
+      "check-type"
+    ],
+
+    // Codelyzer rules
+    "directive-selector": [ // Directive selectors should follow given naming rules
+      true,
+      "attribute",
+      "camelCase"
+    ],
+    "component-selector": [ // Component selectors should follow given naming rules 
+      false,
+      "element",
+      "app",
+      "kebab-case"
+    ],
+    "no-output-on-prefix": true, // Name events without the prefix on. Event handlers should be prefixed with 'on'
+    "use-input-property-decorator": true, // Use @Input decorator rather than the inputs property of @Component and @Directive metadata
+    "use-output-property-decorator": true, // Use @Output decorator rather than the outputs property of @Component and @Directive metadata
+    "use-host-property-decorator": true, // Use @HostProperty decorator rather than the host property of @Component and @Directive metadata
+    "no-input-rename": true, // Disallows renaming directive inputs by providing a string to the decorator
+    "no-output-rename": true, // Disallows renaming directive outputs by providing a string to the decorator
+    "use-life-cycle-interface": true, // Ensure that components implement life cycle interfaces if they use them
+    "use-pipe-transform-interface": true, // Ensure that pipes implement PipeTransform interface
+    "component-class-suffix": true, // Classes decorated with @Component must have suffix “Component” (or custom) in their name
+    "directive-class-suffix": true // Classes decorated with @Directive must have suffix “Directive” (or custom) in their name
+  }
+}

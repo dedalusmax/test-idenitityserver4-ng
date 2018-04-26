@@ -14,11 +14,10 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
+### Static code analysis
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Angular projects use TSLint in order to ensure the code quality and consistency. The applications also use Google's *Codelyzer* for that purpose. Before every commit, it is advised to run `ng lint` and resolve all linter warnings. The list of active linter rules are inside *tslint.json* file.
 
+## Deployment
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Use `npm build -prod` to prepare the files for deployment. Note that this procedure produces AoT (Ahead-of-Time compilation) version of the Angular files in order to use Angular's bundles. The command copies the resulting files into a `dist` folder, from where it may be copied, e.g. on an Azure service remote location.

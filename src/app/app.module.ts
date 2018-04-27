@@ -60,7 +60,7 @@ export class AppModule {
     const config = new OpenIDImplicitFlowConfiguration();
     const endpoints = new AuthWellKnownEndpoints();
 
-    config.stsServer = 'http://localhost:5000';
+    config.stsServer = 'http://localhost:61036';
     config.redirect_url = 'http://localhost:4203/login';
     config.client_id = 'js_angular_admin';
     config.response_type = 'id_token token';
@@ -68,7 +68,7 @@ export class AppModule {
     config.post_logout_redirect_uri = 'http://localhost:4203';
     config.start_checksession = false;
     config.silent_renew = true;
-    config.silent_renew_url = 'http://localhost:5000/silent-renew.html';
+    config.silent_renew_url = 'http://localhost:61036/silent-renew.html';
     config.post_login_route = '/home';
     config.forbidden_route = '/logout';
     config.unauthorized_route = '/logout';
@@ -77,15 +77,15 @@ export class AppModule {
     // tslint:disable-next-line:no-magic-numbers
     config.max_id_token_iat_offset_allowed_in_seconds = 10;
 
-    endpoints.issuer = 'http://localhost:5000';
-    endpoints.jwks_uri = 'http://localhost:5000/.well-known/openid-configuration/jwks';
-    endpoints.authorization_endpoint = 'http://localhost:5000/connect/authorize';
-    endpoints.token_endpoint = 'http://localhost:5000/connect/token';
-    endpoints.userinfo_endpoint = 'http://localhost:5000/connect/userinfo';
-    endpoints.end_session_endpoint = 'http://localhost:5000/connect/endsession';
-    endpoints.check_session_iframe = 'http://localhost:5000/connect/checksession';
-    endpoints.revocation_endpoint = 'http://localhost:5000/connect/revocation';
-    endpoints.introspection_endpoint = 'http://localhost:5000/connect/introspect';
+    endpoints.issuer = 'http://localhost:61036';
+    endpoints.jwks_uri = 'http://localhost:61036/.well-known/openid-configuration/jwks';
+    endpoints.authorization_endpoint = 'http://localhost:61036/connect/authorize';
+    endpoints.token_endpoint = 'http://localhost:61036/connect/token';
+    endpoints.userinfo_endpoint = 'http://localhost:61036/connect/userinfo';
+    endpoints.end_session_endpoint = 'http://localhost:61036/connect/endsession';
+    endpoints.check_session_iframe = 'http://localhost:61036/connect/checksession';
+    endpoints.revocation_endpoint = 'http://localhost:61036/connect/revocation';
+    endpoints.introspection_endpoint = 'http://localhost:61036/connect/introspect';
 
     this.oidcSecurityService.setupModule(config, endpoints);
 

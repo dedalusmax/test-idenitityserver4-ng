@@ -18,6 +18,7 @@
       "tsconfig": "tsconfig.app.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
         "styles.scss"
       ],
       "scripts": [],

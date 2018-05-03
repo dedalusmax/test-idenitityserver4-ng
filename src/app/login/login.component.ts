@@ -22,6 +22,8 @@ export class LoginComponent implements OnDestroy {
                 this.doCallbackLogicIfRequired();
             });
         }
+
+        this.oidcSecurityService.authorize();
     }
 
     ngOnDestroy(): void {

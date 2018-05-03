@@ -8,7 +8,7 @@ import { AdminGuard } from './admin.guard';
 import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'logout', component: LogoutComponent },
     {

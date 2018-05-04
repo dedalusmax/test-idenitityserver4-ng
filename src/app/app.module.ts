@@ -12,7 +12,7 @@ import {
 
 import { AuthInterceptor } from './auth.interceptor';
 import { AdminGuard } from './admin.guard';
-
+import { AppSettings } from './config/app-settings';
 import { AppRoutingModule } from './app-routing.module';
 
 // components
@@ -48,6 +48,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     AdminGuard,
+    AppSettings,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
@@ -55,40 +56,52 @@ export function createTranslateLoader(http: HttpClient) {
 export class AppModule {
 
   constructor(
-    public oidcSecurityService: OidcSecurityService
+    public oidcSecurityService: OidcSecurityService,
+    appSetting: AppSettings
   ) {
     const config = new OpenIDImplicitFlowConfiguration();
     const endpoints = new AuthWellKnownEndpoints();
 
-    config.stsServer = 'http://localhost:5000';
-    config.redirect_url = 'http://localhost:4203/login';
+    // This is the URL where the security token service (STS) server is located
+    config.stsServer = appSetting.identityServerUrl;
+    // This is the redirect_url which was configured on the security token service (STS) server
+    config.redirect_url = window.location.protocol + '//' + window.location.host + '/home';
     config.client_id = 'js_angular_admin';
     config.response_type = 'id_token token';
-    config.scope = 'openid profile email api:admin';
-    config.post_logout_redirect_uri = 'http://localhost:4203';
+    // This must match the STS server configuration
+    config.scope = 'openid profile email api:system';
+    // Url after a server logout if using the end session API
+    config.post_logout_redirect_uri =  window.location.protocol + '//' + window.location.host;
+    // Starts the OpenID session management for this client.
     config.start_checksession = false;
+    // Renews the client tokens, once the token_id expires
     config.silent_renew = true;
-    config.silent_renew_url = 'http://localhost:5000/silent-renew.html';
+    // URL which can be used for a lightweight renew callback
+    config.silent_renew_url = appSetting.identityServerUrl + '/silent-renew.html';
+    // The default Angular route which is used after a successful login, if not using the trigger_authorization_result_event
     config.post_login_route = '/home';
+    // Route, if the server returns a 403. This is an Angular route. HTTP 403
     config.forbidden_route = '/logout';
+    // Route, if the server returns a 401. This is an Angular route. HTTP 401
     config.unauthorized_route = '/logout';
+    // Automatically get user info after authentication.
     config.log_console_warning_active = true;
+    // Logs all debug messages from the module to the console. This can be viewed using F12 in Chrome of Firefox
     config.log_console_debug_active = true;
     // tslint:disable-next-line:no-magic-numbers
     config.max_id_token_iat_offset_allowed_in_seconds = 10;
 
-    endpoints.issuer = 'http://localhost:5000';
-    endpoints.jwks_uri = 'http://localhost:5000/.well-known/openid-configuration/jwks';
-    endpoints.authorization_endpoint = 'http://localhost:5000/connect/authorize';
-    endpoints.token_endpoint = 'http://localhost:5000/connect/token';
-    endpoints.userinfo_endpoint = 'http://localhost:5000/connect/userinfo';
-    endpoints.end_session_endpoint = 'http://localhost:5000/connect/endsession';
-    endpoints.check_session_iframe = 'http://localhost:5000/connect/checksession';
-    endpoints.revocation_endpoint = 'http://localhost:5000/connect/revocation';
-    endpoints.introspection_endpoint = 'http://localhost:5000/connect/introspect';
+    endpoints.issuer = appSetting.identityServerUrl;
+    endpoints.jwks_uri = appSetting.identityServerUrl + '/.well-known/openid-configuration/jwks';
+    endpoints.authorization_endpoint = appSetting.identityServerUrl + '/connect/authorize';
+    endpoints.token_endpoint = appSetting.identityServerUrl + '/connect/token';
+    endpoints.userinfo_endpoint = appSetting.identityServerUrl + '/connect/userinfo';
+    endpoints.end_session_endpoint = appSetting.identityServerUrl + '/connect/endsession';
+    endpoints.check_session_iframe = appSetting.identityServerUrl + '/connect/checksession';
+    endpoints.revocation_endpoint = appSetting.identityServerUrl + '/connect/revocation';
+    endpoints.introspection_endpoint = appSetting.identityServerUrl + '/connect/introspect';
 
     this.oidcSecurityService.setupModule(config, endpoints);
-
-    console.log('APP STARTING');
   }
+
 }

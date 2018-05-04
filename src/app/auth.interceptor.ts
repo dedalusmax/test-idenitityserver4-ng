@@ -10,8 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     private oidcSecurityService: OidcSecurityService;
 
-    constructor(private injector: Injector) {
-    }
+    constructor(private injector: Injector) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let requestToForward = req;
@@ -19,10 +18,8 @@ export class AuthInterceptor implements HttpInterceptor {
         if (this.oidcSecurityService === undefined) {
             this.oidcSecurityService = this.injector.get(OidcSecurityService);
         }
-
         if (this.oidcSecurityService !== undefined) {
             const token = this.oidcSecurityService.getToken();
-            console.log('intercept token = ', token);
             if (token !== '') {
                 const tokenValue = 'Bearer ' + token;
                 requestToForward = req.clone({ setHeaders: { 'Authorization': tokenValue } });
@@ -30,8 +27,6 @@ export class AuthInterceptor implements HttpInterceptor {
         } else {
             console.log('OidcSecurityService undefined: NO auth header!');
         }
-
         return next.handle(requestToForward);
     }
-
 }

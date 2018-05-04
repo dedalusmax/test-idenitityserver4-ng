@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
-    selector: 'app-login',
+    selector: 'login-component',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
@@ -22,7 +22,6 @@ export class LoginComponent implements OnDestroy {
                 this.doCallbackLogicIfRequired();
             });
         }
-
         this.oidcSecurityService.authorize();
     }
 

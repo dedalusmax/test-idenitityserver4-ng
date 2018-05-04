@@ -64,7 +64,7 @@ export class AppModule {
     config.redirect_url = 'http://localhost:4203/login';
     config.client_id = 'js_angular_admin';
     config.response_type = 'id_token token';
-    config.scope = 'openid profile email api1';
+    config.scope = 'openid profile email api:admin';
     config.post_logout_redirect_uri = 'http://localhost:4203';
     config.start_checksession = false;
     config.silent_renew = true;

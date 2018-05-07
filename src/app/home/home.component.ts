@@ -1,15 +1,12 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'home-component',
     templateUrl: './home.component.html'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
-    constructor(
-        private router: Router
-    ) {
-        this.router.navigate(['https://www.sauter-controls.com/en.html']);
+    ngOnInit(): void {
+        window.location.href = 'https://www.sauter-controls.com/en.html';
     }
 }

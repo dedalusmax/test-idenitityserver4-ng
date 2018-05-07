@@ -65,7 +65,7 @@ export class AppModule {
     // This is the URL where the security token service (STS) server is located
     config.stsServer = appSetting.identityServerUrl;
     // This is the redirect_url which was configured on the security token service (STS) server
-    config.redirect_url = window.location.protocol + '//' + window.location.host + '/home';
+    config.redirect_url = window.location.protocol + '//' + window.location.host + '/login';
     config.client_id = 'js_angular_admin';
     config.response_type = 'id_token token';
     // This must match the STS server configuration

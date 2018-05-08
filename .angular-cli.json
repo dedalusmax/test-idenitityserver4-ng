@@ -9,12 +9,12 @@
       "outDir": "dist",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.ico",
+        "test.config.json"
       ],
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
-      "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",

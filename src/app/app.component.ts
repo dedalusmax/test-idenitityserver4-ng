@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { IdentityService } from './services/identity.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,11 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
 
   constructor(
-    translate: TranslateService
+    translate: TranslateService,
+    identityService: IdentityService
   ) {
     translate.setDefaultLang('en');
     translate.use('en');
+    identityService.load();
   }
 }
